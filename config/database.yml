@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: go_free_production
-  username: go_free
   password: <%= ENV['GO_FREE_DATABASE_PASSWORD'] %>

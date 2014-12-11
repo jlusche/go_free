@@ -1,4 +1,4 @@
-Museum.destroy_all
+Museum.destroy_all 
 
 museums = Museum.create([
   { name:   'Autry National Center of the American West (in Griffith Park)', city: 'Los Angeles'},

@@ -1,0 +1,13 @@
+$myGreen: green;
+
+.link {
+  color: black;
+
+  &:active {
+
+    color: $myGreen;
+  }
+
+
+
+}

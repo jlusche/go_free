@@ -1,0 +1,23 @@
+<% @events.each do |event| %>
+
+<% name = event["event_name"] %>
+<ul style = color:red>
+<%= name %>
+</ul>
+<% end %>
+
+
+
+
+
+<% @festival_names.each do |festival| %>
+
+<% name = festival[8] %>
+<ul>
+<%= name %>
+<%= festival[9][0] %>
+</ul><br><br>
+<% end %>
+
+
+

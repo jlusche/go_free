@@ -11,22 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206013051) do
+ActiveRecord::Schema.define(version: 20141214011020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "locations", force: true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "museums", force: true do |t|
-    t.string   "name"
-    t.string   "city"
-    t.string   "neighborhood"
+    t.string   "name",            limit: nil
+    t.string   "city",            limit: nil
+    t.string   "neighborhood",    limit: nil
     t.text     "tours"
     t.text     "description"
     t.integer  "parking"
     t.text     "parking_notes"
     t.text     "direction_notes"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

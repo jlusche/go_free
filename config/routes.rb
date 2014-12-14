@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  get '/' => "locations#index", as: 'locations'
+  get '/show' => "locations#show" 
+
   get 'museums/index' => "museums#index"
 
   get 'museums/show'
@@ -10,6 +14,8 @@ Rails.application.routes.draw do
   get 'festivals/index' => "festivals#index"
 
   get 'festivals/show'
+
+  get 'laweekly/index' => "laweekly#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

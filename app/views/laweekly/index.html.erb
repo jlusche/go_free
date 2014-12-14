@@ -1,0 +1,8 @@
+ <% @laweekly.each_with_index do |la, index| %>
+<ul>
+  <%= la['Title']['text'] %> <br>
+<%# la.title(index) %>
+</ul><br><br>
+<% end %>
+
+<%= @laweekly %>

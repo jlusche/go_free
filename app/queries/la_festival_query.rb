@@ -4,8 +4,13 @@ class LAFestivalsQuery
 
     @festivals = festivals_la_city.parsed_response
 
-    @festival_names = @festivals["data"]
+    la_libraries = HTTParty.get("https://data.lacity.org/resource/d3th-bqdk.json")
     
+    @libraries = la_libraries.parsed_response   
   end
 
+  def name 
+    @festival_name = @festivals["data"]
+    @library_event = @libraries["event_name"]
+  end
 end

@@ -1,23 +1,13 @@
 class FestivalsController < ApplicationController
 
   def index 
-    festivals_la_city = HTTParty.get("https://data.lacity.org/api/views/acy8-72w9/rows.json?accessType=DOWNLOAD")
+    la_festivals = HTTParty.get("https://data.lacity.org/api/views/acy8-72w9/rows.json?accessType=DOWNLOAD")
 
-    @festivals = festivals_la_city.parsed_response
+    @festivals = la_festivals.parsed_response
 
-    @festival_names = @festivals["data"]
+    la_libraries = HTTParty.get("https://data.lacity.org/resource/d3th-bqdk.json")
 
-
-
-
-    events_la_city = HTTParty.get("https://data.lacity.org/resource/d3th-bqdk.json")
-
-    @events = events_la_city.parsed_response
-
-    @event_names = @festivals[""]
-
-
-    
+    @libraries = la_libraries.parsed_response
   end
 
   def show
@@ -30,3 +20,5 @@ class FestivalsController < ApplicationController
   end
 
 end
+
+

@@ -1,21 +1,26 @@
-<% @events.each do |event| %>
+<%# @events.each do |event| %>
 
-<% name = event["event_name"] %>
+<%# name = event["event_name"] %>
+
+
+
+<% @libraries.each do |library| %>
+
+<%# name = @libraries[0] %>
 <ul style = color:red>
-<%= name %>
-</ul>
+<%= library["event_name"] %>
+<%# @festivals[9][0] %>
+</ul><br><br>
 <% end %>
 
 
 
+<% @festivals.each do |festival| %>
 
-
-<% @festival_names.each do |festival| %>
-
-<% name = festival[8] %>
+<% name = @festivals[8] %>
 <ul>
 <%= name %>
-<%= festival[9][0] %>
+<%# @festivals[9][0] %>
 </ul><br><br>
 <% end %>
 

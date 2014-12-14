@@ -1,5 +1,5 @@
 class GooglePlacesQuery
-  attr_accessor :museums
+  #attr_accessor :museums
   
   def initialize(query, lat, long, radius)
     @query = query

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
   get '/' => "locations#index", as: 'locations'
-  get '/show' => "locations#show" 
+
+  resources :locations, only: [:index, :show]
 
   get 'museums/index' => "museums#index"
 

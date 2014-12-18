@@ -7,12 +7,23 @@ class LocationsController < ApplicationController
       @locations = Location.near('Santa Monica, CA, US', 10)
     end
 
+    events = []
+
+    @locations.each do |location|
+      events << location.events.current
+    end
+
+    @events = events.flatten.compact
+  end
+
+  
     #@user_location = Location.new(address:param[:search])
 
-  end
 
   def show
     @location = Location.find(params[:id])
+
+    #@events = Event.find_by(:location_id)
   end
 
   def create
@@ -23,3 +34,4 @@ class LocationsController < ApplicationController
   end
 
 end
+

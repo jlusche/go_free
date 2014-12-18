@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
 
+#gem 'bootstrap-sass', ~> '3.3.1'
+
+gem 'carrierwave'
+
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'httparty'
 
 gem 'geocoder'
+
+gem 'ice_cube', '~> 0.12.1'
 
 gem 'rails_12factor', group: :production
 
@@ -46,6 +52,7 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
+
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'

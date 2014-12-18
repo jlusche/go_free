@@ -6,9 +6,16 @@
   </p>
 <% end %>
 
-<h3>Nearby locations</h3>
-<ul>
-<% @locations.each do |location| %>
-  <li><%= link_to location.address, location %> (<%= location.distance.round(2) %> miles)</li>
+<h3>Nearby Events</h3>
+<ul><% @events.each do |event| %>
+   <%# events = Event.where(location_id: 59) %>
+ 
+    <li> Event Name:  <%= event.name %></li>
+    <li> Start Time:  <%= event.start_time %></li>
+    <li> End Time:  <%= event.end_time %></li>
+    <li> Location:  <%= event.location.name %></li>
+    <li>Distance:  <%= event.location.distance.round(2) %> miles away</li>
+    <br>
+  
+</ul> 
 <% end %>
-</ul>

@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214205345) do
+ActiveRecord::Schema.define(version: 20141216035456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: true do |t|
     t.string   "address"
@@ -23,6 +32,16 @@ ActiveRecord::Schema.define(version: 20141214205345) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.text     "description"
+    t.string   "website"
+    t.integer  "phone"
+    t.boolean  "free_parking"
+    t.text     "parking_notes"
+    t.text     "tours"
+    t.text     "direction_notes"
+    t.text     "special_closure"
+    t.text     "event_notes"
+    t.string   "avatar"
   end
 
   create_table "museums", force: true do |t|

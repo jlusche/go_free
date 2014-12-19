@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   get '/' => "locations#index", as: 'locations'
 
+  resources :events, only: [:show, :index]
+
   resources :locations, only: [:index, :show]
 
   get 'museums/index' => "museums#index"
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   get 'festivals/show'
 
   get 'laweekly/index' => "laweekly#index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

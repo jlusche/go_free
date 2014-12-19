@@ -1,6 +1,6 @@
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
 <br>
-<%= @location.name %><br>
+
 
 <% @location.events.each_with_index do |event, index| %>
   <%= event.name %><br>
@@ -11,3 +11,4 @@
   About the <%= @location.name %><br>
   <%= @location.description %><br>
   <% end %>
+  

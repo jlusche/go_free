@@ -1,0 +1,15 @@
+<%= image_tag @event.location.full_img, :style => 'max-height: 300px; max-width: 300px' %>
+    <br>
+
+<br>
+
+
+  <%= @event.name %><br>
+  Start Time <%= @event.start_time %><br>
+  End Time <%= @event.end_time %>
+  <br><br>
+  
+  About the <%= @event.location.name %><br>
+  <%= @event.location.description %><br>
+ 
+  

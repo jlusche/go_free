@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216035456) do
+ActiveRecord::Schema.define(version: 20141219013626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20141216035456) do
     t.text     "special_closure"
     t.text     "event_notes"
     t.string   "avatar"
+    t.string   "img_url"
+    t.string   "full_img"
   end
 
   create_table "museums", force: true do |t|

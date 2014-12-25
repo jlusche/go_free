@@ -46,6 +46,78 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
+
+      schedule = IceCube::Schedule.new(Time.now)
+
+Friday
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Mon-Fri
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday)
+      schedule.first 10
+
+Mon-Sun
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Mon-Sun minus Tuesday
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Mon-Wed, Sat-Sun
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :saturday, :sunday)
+      schedule.first 10
+
+Sat
+      schedule.rrule Rule.weekly.day(:saturday)
+      schedule.first 10
+
+Sat-Sun
+      schedule.rrule Rule.weekly.day(:saturday, :sunday)
+      schedule.first 10
+
+Sun
+      schedule.rrule Rule.weekly.day(:sunday)
+      schedule.first 10
+
+Thurs
+      schedule.rrule Rule.weekly.day(:thursday)
+      schedule.first 10
+
+Thurs-Sun
+      schedule.rrule Rule.weekly.day(:thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Thurs-Fri
+      schedule.rrule Rule.weekly.day(:thursday, :friday)
+      schedule.first 10
+
+Thurs-Fri, Sun
+      schedule.rrule Rule.weekly.day(:thursday, :friday, :sunday)
+      schedule.first 10
+
+Tues-Sat
+      schedule.rrule Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday)
+      schedule.first 10
+
+Tues-Sun
+      schedule.rrule Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Wed-Sun
+      schedule.rrule Rule.weekly.day(:wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+Wed, Fri-Sun
+      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      schedule.first 10
+
+
+
+
+
+
       event_venue = location.name
 
       start_year = hash['start_time'][0..3].to_i

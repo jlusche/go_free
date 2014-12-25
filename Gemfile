@@ -8,6 +8,10 @@ gem 'autoprefixer-rails'
 
 #added these gems above for styling with bootstrap
 
+gem 'chronic'
+
+#other gems
+
 
 gem 'dotenv-rails', :groups => [:development, :test]
 

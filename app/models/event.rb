@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :location
 
-scope :current, -> {where("start_time >= ? AND end_time > ?",DateTime.new(2014,12,18,17,0,0), DateTime.new(2014,12,18,17,0,0))}
+scope :current, -> {where("start_time >= ? AND end_time < ?",DateTime.now, DateTime.now + 30 )}
 
 #scope :current, -> {where("start_time <= ? AND end_time > ?",DateTime.now, DateTime.now)}
 

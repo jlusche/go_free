@@ -1,33 +1,45 @@
-<%= form_tag locations_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
-  </p>
-<% end %>
 
-<h3>Nearby Events (next 30 days)</h3>
-<ul><% @events.each do |event| %>
-   <%# events = Event.where(location_id: 59) %>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <%= form_tag locations_path, :method => :get do %>
+            <p>
+              <%= text_field_tag :search, params[:search] %>
+              <%= submit_tag "Search Near", :name => nil %>
+            </p>
+          <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+          <h3>Nearby Events (next 30 days)</h3>
+          <ul><% @events.each do |event| %>
+          <%# events = Event.where(location_id: 59) %>
 
 
-    <%= image_tag event.location.img_url, :style => 'max-height: 100px; max-width: 100px' %>
-    <br>
-    <strong>Event Name:  <%= link_to "#{event.name} at #{event.venue}", "/events/#{event.id}" %></strong>
-    <li> Location:  <%= link_to event.location.name, "/locations/#{event.location.id}" %></li>
-    <li> Start Time:  <%= event.start_time %></li>
-    <li> End Time:  <%= event.end_time %></li>  
-    <li>Distance:  <%= event.location.distance.round(2) %> miles away</li>
-    <br>
+          <%= image_tag event.location.img_url, :style => 'max-height: 100px; max-width: 100px' %>
+          <br>
+          <strong>Event Name:  <%= link_to "#{event.name} at #{event.venue}", "/events/#{event.id}" %></strong>
+          <li> Location:  <%= link_to event.location.name, "/locations/#{event.location.id}" %></li>
+          <li> Start Time:  <%= event.start_time %></li>
+          <li> End Time:  <%= event.end_time %></li>  
+          <li>Distance:  <%= event.location.distance.round(2) %> miles away</li>
+          <br>
   
-</ul>
-<% end %>
-
-<h3>Nearby Locations</h3>
-<ul><% @locations.each do |location| %>
+          </ul>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <h3>Nearby Locations</h3>
+          <ul><% @locations.each do |location| %>
    
-    <li>
-    <strong>Location Name:  <%= link_to location.name, "/locations/#{location.id}" %></strong>
-    </li>
+            <li>
+            <strong>Location Name:  <%= link_to location.name, "/locations/#{location.id}" %></strong>
+            </li>
   
-</ul>
-<% end %>
+          </ul>
+          <% end %>
+
+        </div>
+    </div>
+</div>

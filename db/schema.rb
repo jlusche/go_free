@@ -47,16 +47,16 @@ ActiveRecord::Schema.define(version: 20141219013626) do
   end
 
   create_table "museums", force: true do |t|
-    t.string   "name",            limit: nil
-    t.string   "city",            limit: nil
-    t.string   "neighborhood",    limit: nil
+    t.string   "name"
+    t.string   "city"
+    t.string   "neighborhood"
     t.text     "tours"
     t.text     "description"
     t.integer  "parking"
     t.text     "parking_notes"
     t.text     "direction_notes"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

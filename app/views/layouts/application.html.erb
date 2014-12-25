@@ -13,12 +13,71 @@
 
   <div class="container">
     <div class="row">
-        <div class="col-xs-12"><h1>Welcome to Go Free</h1><br><h3><%= link_to 'Home', '/' %></h3></div>
+        <div class="col-xs-12">
+          <div style="text-align: center"><%= image_tag "http://s3.amazonaws.com/gofreebax/gofree_logos/gofree+logo+small.png", :style => 'max-height: 100px; max-width: 100px; align: ""' %></div>
+          <br>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+        <div style="text-align: center">
+          <div class="col-md-4"><h1>Welcome to Go Free</h1><br><h3><%= link_to 'Home', '/' %></h3><br></div>
+        </div>
+        <div class="col-md-4"></div>
     </div>
   </div>
+<div class="container">
+ <div class="row">
+        <div class="col-md-1">
+          <h2>Narrow Search</h2>
+          <h3>Narrow By Date</h3>
+          <ul>
+            <li><%= link_to "Today", "/" %></li>
+            <li><%= link_to "Tomorrow", "/" %></li>
+            <li><%= link_to "This Weekend", "/" %></li>
+            <li><%= link_to "Next 7 Days", "/" %></li>
+            <li><%= link_to "Jump to Date", "/" %></li>
+          </ul>
+
+          <h3>Category</h3>
+          <ul>
+            <li><%= link_to "Museums", "/" %></li>
+            <li><%= link_to "Art", "/" %></li>
+            <li><%= link_to "Music", "/" %></li>
+            <li><%= link_to "Movies", "/" %></li>
+            <li><%= link_to "Festivals", "/" %></li>
+            <li><%= link_to "Outdoors", "/" %></li>
+            <li><%= link_to "Dance", "/" %></li>
+            <li><%= link_to "Family", "/" %></li>
+            <li><%= link_to "Comedy", "/" %></li>
+
+          </ul>
+
+          <h3>Region</h3>
+          <ul>
+            <li><%= link_to "Central California", "/" %></li>
+            <li><%= link_to "Downtown Area", "/" %></li>
+            <li><%= link_to "Eastside", "/" %></li>
+            <li><%= link_to "Hollywood and Vicinity", "/" %></li>
+            <li><%= link_to "LAX to Longbeach", "/" %></li>
+            <li><%= link_to "Mid-Wilshire to WeHo", "/" %></li>
+            <li><%= link_to "Neighboring Counties", "/" %></li>
+            <li><%= link_to "Northern California", "/" %></li>
+            <li><%= link_to "San Diego County", "/" %></li>
+            <li><%= link_to "San Fernando Valley", "/" %></li>
+            <li><%= link_to "San Francisco Bay Area", "/" %></li>
+            <li><%= link_to "San Gabriel Valley", "/" %></li>
+            <li><%= link_to "Southeast County", "/" %></li>
+            <li><%= link_to "Westside", "/" %></li>
+          </ul>
 
 
-<%= yield %>
+        </div>
+        <div class="col-md-11"><%= yield %></div>
+    </div>
+</div>
+
+
 
 </body>
 </html>

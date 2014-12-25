@@ -12,12 +12,22 @@
 
     <%= image_tag event.location.img_url, :style => 'max-height: 100px; max-width: 100px' %>
     <br>
-    <strong>Event Name:  <%= link_to event.name, "/events/#{event.id}" %></strong>
+    <strong>Event Name:  <%= link_to "#{event.name} at #{event.venue}", "/events/#{event.id}" %></strong>
     <li> Location:  <%= link_to event.location.name, "/locations/#{event.location.id}" %></li>
     <li> Start Time:  <%= event.start_time %></li>
     <li> End Time:  <%= event.end_time %></li>  
     <li>Distance:  <%= event.location.distance.round(2) %> miles away</li>
     <br>
   
-</ul> 
+</ul>
+<% end %>
+
+<h3>Nearby Locations</h3>
+<ul><% @locations.each do |location| %>
+   
+    <li>
+    <strong>Location Name:  <%= link_to location.name, "/locations/#{location.id}" %></strong>
+    </li>
+  
+</ul>
 <% end %>

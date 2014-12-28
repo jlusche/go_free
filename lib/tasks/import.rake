@@ -40,6 +40,7 @@ namespace :import do
         end_time: end_time,
         name: "Free Museum Day",
         venue: event_venue
+        category: "Museums"
         )
     end
   end
@@ -53,6 +54,8 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
+      special = (hash['special'])
+
       schedule = IceCube::Schedule.new(Time.now)
 
       week_days = (hash['day'])
@@ -62,16 +65,16 @@ case week_days
 when "Friday"
       schedule.rrule IceCube::Rule.weekly.day(:friday)
       days = schedule.first 10
-      start_times = []
+      start_times_y_m_d = []
+      end_times_y_m_d =[]
+      start_times_h_m = hash['start_time'][12..18].to_i
       days.each do |day|
-        start_times = day[0..12]
+        start_times_y_m_d << day[0..10]
+        start_times = start_times_y_m_d + start_times_h_m.to_s
 
 binding.pry
 
       end
-
-
-
 
 when "Mon-Fri"
       schedule.rrule IceCube::Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday)
@@ -140,9 +143,9 @@ end
 
       event_venue = location.name
 
-      start_year = hash['start_time'][0..3].to_i
-      start_month = hash['start_time'][5..6].to_i
-      start_day = hash['start_time'][9..10].to_i
+      start_year = 
+      start_month = 
+      start_day = 
       start_hour = hash['start_time'][12..14].to_i
       start_min = hash['start_time'][16..18].to_i
 
@@ -151,9 +154,9 @@ end
 
       #start_time = DateTime.new(hash['start_time']) #parse string & turn into integer
 
-      end_year = hash['end_time'][0..3].to_i
-      end_month = hash['end_time'][5..6].to_i
-      end_day = hash['end_time'][9..10].to_i
+      end_year = 
+      end_month = 
+      end_day = 
       end_hour = hash['end_time'][12..14].to_i
       end_min = hash['end_time'][16..18].to_i
 
@@ -170,7 +173,7 @@ end
         name: "Free Museum Day",
         venue: event_venue
         special:
-        category:
+        category: "Museums"
         )
 
     end

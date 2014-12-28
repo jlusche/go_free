@@ -39,7 +39,7 @@ namespace :import do
         start_time: start_time,
         end_time: end_time,
         name: "Free Museum Day",
-        venue: event_venue
+        venue: event_venue,
         category: "Museums"
         )
     end
@@ -56,6 +56,8 @@ namespace :import do
 
       special = (hash['special'])
 
+      #event_venue = location.name
+
       schedule = IceCube::Schedule.new(Time.now)
 
       week_days = (hash['day'])
@@ -64,17 +66,44 @@ case week_days
 
 when "Friday"
       schedule.rrule IceCube::Rule.weekly.day(:friday)
-      days = schedule.first 10
-      start_times_y_m_d = []
-      end_times_y_m_d =[]
-      start_times_h_m = hash['start_time'][12..18].to_i
-      days.each do |day|
-        start_times_y_m_d << day[0..10]
-        start_times = start_times_y_m_d + start_times_h_m.to_s
+      days = schedule.first(10)
 
-binding.pry
+      start_time_h_m = hash['start_time']
+      end_time_h_m = hash['end_time']
+
+      times_y_m_d = []
+
+      days.each do |day|
+        times_y_m_d << day.to_s[0..9]
+      end
+
+      start_times = []
+      end_times = []
+
+      times_y_m_d.each do |y_m_d|
+        start_times << "#{y_m_d} + #{start_time_h_m}"
+        end_times << "#{y_m_d} + #{end_time_h_m}"
+      end
+
+      all_times = [*start_times.zip(end_times).flatten]
+
+      all_times.each do |start_time, end_time|
+
+        binding.pry
+
+        Event.create(
+        location_id: location.id,
+        start_time: start_time,
+        end_time: end_time,
+        name: "Free Museum Day",
+        venue: event_venue,
+        special: special,
+        category: "Museums"
+        )
 
       end
+
+
 
 when "Mon-Fri"
       schedule.rrule IceCube::Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday)
@@ -141,38 +170,27 @@ else
 
 end
 
-      event_venue = location.name
 
-      start_year = 
-      start_month = 
-      start_day = 
       start_hour = hash['start_time'][12..14].to_i
       start_min = hash['start_time'][16..18].to_i
 
-      start_time = DateTime.new(start_year,start_month,start_day,start_hour,start_min)
+      start_time = DateTime.new#(start_hour,start_min)
 
 
-      #start_time = DateTime.new(hash['start_time']) #parse string & turn into integer
-
-      end_year = 
-      end_month = 
-      end_day = 
       end_hour = hash['end_time'][12..14].to_i
       end_min = hash['end_time'][16..18].to_i
 
 
-      end_time = DateTime.new(end_year,end_month,end_day,end_hour,end_min)
-
-      #end_time = DateTime.new(hash['end_time'])
+      end_time = DateTime.new#(end_hour,end_min)
 
 
       Event.create(
-        location_id: location.id,
+        #location_id: location.id,
         start_time: start_time,
         end_time: end_time,
         name: "Free Museum Day",
-        venue: event_venue
-        special:
+        #venue: event_venue,
+        special: special,
         category: "Museums"
         )
 

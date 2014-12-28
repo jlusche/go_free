@@ -20,18 +20,13 @@ namespace :import do
       start_time = DateTime.new(start_year,start_month,start_day,start_hour,start_min)
 
 
-      #start_time = DateTime.new(hash['start_time']) #parse string & turn into integer
-
       end_year = hash['end_time'][0..3].to_i
       end_month = hash['end_time'][5..6].to_i
       end_day = hash['end_time'][9..10].to_i
       end_hour = hash['end_time'][12..14].to_i
       end_min = hash['end_time'][16..18].to_i
 
-
       end_time = DateTime.new(end_year,end_month,end_day,end_hour,end_min)
-
-      #end_time = DateTime.new(hash['end_time'])
 
 
       Event.create(
@@ -47,6 +42,7 @@ namespace :import do
 
   task :recurring => :environment do
     csv_text = File.read('/Users/patrickfarabaugh/Desktop/museums_reoccuring_days.csv')
+    #'/Users/jennalusche/Desktop/museums_reoccuring_days.csv'
     csv = CSV.parse(csv_text, :headers => true)
 
     csv.each do |row|
@@ -54,9 +50,9 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
-      special = (hash['special'])
-
       #event_venue = location.name
+
+      special = (hash['special'])
 
       schedule = IceCube::Schedule.new(Time.now)
 
@@ -71,25 +67,36 @@ when "Friday"
       start_time_h_m = hash['start_time']
       end_time_h_m = hash['end_time']
 
-      times_y_m_d = []
+      times_ymd = []
 
       days.each do |day|
-        times_y_m_d << day.to_s[0..9]
+        times_ymd << day.to_s[0..9]
       end
 
       start_times = []
       end_times = []
 
-      times_y_m_d.each do |y_m_d|
-        start_times << "#{y_m_d} + #{start_time_h_m}"
-        end_times << "#{y_m_d} + #{end_time_h_m}"
+      times_ymd.each do |ymd|
+
+        y = ymd[0..3].to_i
+        m = ymd[5..6].to_i
+        d = ymd[8..9].to_i
+
+        s_h = start_time_h_m[0..1].to_i
+        s_m = start_time_h_m[3..4].to_i
+
+        e_h = end_time_h_m[0..1].to_i
+        e_m = end_time_h_m[3..4].to_i
+
+        start_times << DateTime.new(y, m, d, s_h, s_m)
+        end_times << DateTime.new(y, m, d, e_h, e_m)
       end
 
       all_times = [*start_times.zip(end_times).flatten]
 
       all_times.each do |start_time, end_time|
 
-        binding.pry
+binding.pry
 
         Event.create(
         location_id: location.id,
@@ -170,34 +177,7 @@ else
 
 end
 
-
-      start_hour = hash['start_time'][12..14].to_i
-      start_min = hash['start_time'][16..18].to_i
-
-      start_time = DateTime.new#(start_hour,start_min)
-
-
-      end_hour = hash['end_time'][12..14].to_i
-      end_min = hash['end_time'][16..18].to_i
-
-
-      end_time = DateTime.new#(end_hour,end_min)
-
-
-      Event.create(
-        #location_id: location.id,
-        start_time: start_time,
-        end_time: end_time,
-        name: "Free Museum Day",
-        #venue: event_venue,
-        special: special,
-        category: "Museums"
-        )
-
     end
   end
-
-
-
 
 end 

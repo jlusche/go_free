@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141225042009) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "venue"
-    t.string   "type"
+    t.string   "category"
   end
 
   create_table "locations", force: true do |t|

@@ -1,6 +1,7 @@
 namespace :import do
   task :events => :environment do
     csv_text = File.read('/Users/patrickfarabaugh/Desktop/museums_free_day.csv')
+    #'/Users/jennalusche/Desktop/museums_free_day.csv'
     csv = CSV.parse(csv_text, :headers => true)
 
     csv.each do |row|
@@ -33,7 +34,13 @@ namespace :import do
       #end_time = DateTime.new(hash['end_time'])
 
 
-      Event.create(location_id: location.id, start_time: start_time, end_time: end_time, name: "Free Museum Day", venue: event_venue)
+      Event.create(
+        location_id: location.id,
+        start_time: start_time,
+        end_time: end_time,
+        name: "Free Museum Day",
+        venue: event_venue
+        )
     end
   end
 
@@ -46,77 +53,90 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
-
       schedule = IceCube::Schedule.new(Time.now)
 
-Friday
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
+      week_days = (hash['day'])
 
-Mon-Fri
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday)
-      schedule.first 10
+case week_days
 
-Mon-Sun
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
+when "Friday"
+      schedule.rrule IceCube::Rule.weekly.day(:friday)
+      days = schedule.first 10
+      start_times = []
+      days.each do |day|
+        start_times = day[0..12]
 
-Mon-Sun minus Tuesday
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
+binding.pry
 
-Mon-Wed, Sat-Sun
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :saturday, :sunday)
-      schedule.first 10
-
-Sat
-      schedule.rrule Rule.weekly.day(:saturday)
-      schedule.first 10
-
-Sat-Sun
-      schedule.rrule Rule.weekly.day(:saturday, :sunday)
-      schedule.first 10
-
-Sun
-      schedule.rrule Rule.weekly.day(:sunday)
-      schedule.first 10
-
-Thurs
-      schedule.rrule Rule.weekly.day(:thursday)
-      schedule.first 10
-
-Thurs-Sun
-      schedule.rrule Rule.weekly.day(:thursday, :friday, :saturday, :sunday)
-      schedule.first 10
-
-Thurs-Fri
-      schedule.rrule Rule.weekly.day(:thursday, :friday)
-      schedule.first 10
-
-Thurs-Fri, Sun
-      schedule.rrule Rule.weekly.day(:thursday, :friday, :sunday)
-      schedule.first 10
-
-Tues-Sat
-      schedule.rrule Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday)
-      schedule.first 10
-
-Tues-Sun
-      schedule.rrule Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
-
-Wed-Sun
-      schedule.rrule Rule.weekly.day(:wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
-
-Wed, Fri-Sun
-      schedule.rrule Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
-      schedule.first 10
+      end
 
 
 
 
+when "Mon-Fri"
+      schedule.rrule IceCube::Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday)
+      days = schedule.first 10
 
+when "Mon-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Mon-Sun minus Tuesday"
+      schedule.rrule IceCube::Rule.weekly.day(:monday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Mon-Wed, Sat-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:monday, :tuesday, :wednesday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Sat"
+      schedule.rrule IceCube::Rule.weekly.day(:saturday)
+      days = schedule.first 10
+
+when "Sat-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:saturday, :sunday)
+      days = schedule.first 10
+
+when "Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:sunday)
+      days = schedule.first 10
+
+when "Thurs"
+      schedule.rrule IceCube::Rule.weekly.day(:thursday)
+      days = schedule.first 10
+
+when "Thurs-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:thursday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Thurs-Fri"
+      schedule.rrule IceCube::Rule.weekly.day(:thursday, :friday)
+      days = schedule.first 10
+
+when "Thurs-Fri, Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:thursday, :friday, :sunday)
+      days = schedule.first 10
+
+when "Tues-Sat"
+      schedule.rrule IceCube::Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday)
+      days = schedule.first 10
+
+when "Tues-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Wed-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:wednesday, :thursday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+when "Wed, Fri-Sun"
+      schedule.rrule IceCube::Rule.weekly.day(:wednesday, :friday, :saturday, :sunday)
+      days = schedule.first 10
+
+else
+
+
+end
 
       event_venue = location.name
 
@@ -143,7 +163,16 @@ Wed, Fri-Sun
       #end_time = DateTime.new(hash['end_time'])
 
 
-      Event.create(location_id: location.id, start_time: start_time, end_time: end_time, name: "Free Museum Day", venue: event_venue)
+      Event.create(
+        location_id: location.id,
+        start_time: start_time,
+        end_time: end_time,
+        name: "Free Museum Day",
+        venue: event_venue
+        special:
+        category:
+        )
+
     end
   end
 

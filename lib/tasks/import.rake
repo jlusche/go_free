@@ -50,7 +50,7 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
-      #event_venue = location.name
+      event_venue = location.name
 
       special = (hash['special'])
 

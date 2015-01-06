@@ -13,13 +13,13 @@ class LaweeklyQuery
 
     collection = json['results']['collection'].each do |event|
 
-      location = Location.find_by_name(event['Location'])
+      location = Location.find_by_name(event['Location']['text'])
 
       Event.create(
         location_id: location.id, 
         start_time: start_time, 
         end_time: end_time, 
-        name: hash['event_name']
+        name: event['Title']['text']
         )
 
 

@@ -9,6 +9,13 @@ namespace :import do
 
       location = Location.find_by_name(hash['name'])
 
+      unless location
+        location = Location.create(name: hash['name'])
+        puts "#{hash['name']} didnt exist but was created"
+      else
+        puts 'cool location was found!'
+      end
+
       event_venue = location.name
 
       start_year = hash['start_time'][0..3].to_i

@@ -50,6 +50,13 @@ namespace :import do
 
       location = Location.find_by_name(hash['museum_name'])
 
+      unless location
+        location = Location.create(blakjsandjasd)
+        puts "#{hash['museum_name']} didnt exist but was created"
+      else
+        puts 'cool location was found!'
+      end
+
       event_venue = location.name
 
       special = (hash['special'])

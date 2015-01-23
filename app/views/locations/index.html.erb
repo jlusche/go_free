@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
       <div style="text-align: center">
-        <div class="col-xs-12">
+        <div class="col-xs-8">
           <%= form_tag locations_path, :method => :get do %>
             <p>
               <%= text_field_tag :search, params[:search] %>
@@ -23,8 +23,8 @@
           <br>
           <strong>Event Name:  <%= link_to "#{event.name} at #{event.venue}", "/events/#{event.id}" %></strong>
           <li> Location:  <%= link_to event.location.name, "/locations/#{event.location.id}" %></li>
-          <li> Start Time:  <%= event.start_time %></li>
-          <li> End Time:  <%= event.end_time %></li>  
+          <li> Start Time:  <%= event.start_time.strftime("%B %e, %Y at %I:%M %p") %></li>
+          <li> End Time:  <%= event.end_time.strftime("%B %e, %Y at %I:%M %p") %></li>  
           <li>Distance:  <%= event.location.distance.round(2) %> miles away</li>
           <br>
   

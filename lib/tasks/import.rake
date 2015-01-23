@@ -1,7 +1,7 @@
 namespace :import do
   task :events => :environment do
-    csv_text = File.read('/Users/patrickfarabaugh/Desktop/museums_free_day.csv')
-    #'/Users/jennalusche/Desktop/museums_free_day.csv'
+    csv_text = File.read('/Users/jennalusche/Desktop/GF/museums_free_day.csv')
+    #patrickfarabaugh 
     csv = CSV.parse(csv_text, :headers => true)
 
     csv.each do |row|
@@ -16,7 +16,7 @@ namespace :import do
         puts 'cool location was found!'
       end
 
-      event_venue = location.name
+      event_venue = location.name 
 
       start_year = hash['start_time'][0..3].to_i
       start_month = hash['start_time'][5..6].to_i
@@ -47,24 +47,24 @@ namespace :import do
     end
   end
 
+
   task :recurring => :environment do
-    csv_text = File.read('/Users/patrickfarabaugh/Desktop/museums_reoccuring_days.csv')
-    #'/Users/jennalusche/Desktop/museums_reoccuring_days.csv'
+    csv_text = File.read('/Users/jennalusche/Desktop/GF/museums_recurring_days.csv')
+  
     csv = CSV.parse(csv_text, :headers => true)
 
     csv.each do |row|
       hash =  row.to_hash
 
-      location = Location.find_by_name(hash['museum_name'])
-
-      unless location
-        location = Location.create(name: hash['museum_name'])
-        puts "#{hash['museum_name']} didnt exist but was created"
+      unless Location.find_by_name(hash['museum_name'])
+          location = Location.create(name: hash['museum_name'])
+          puts "#{hash['museum_name']} didnt exist but was created"
       else
-        puts 'cool location was found!'
+        location = Location.find_by_name(hash['museum_name'])
+          puts 'cool location was found!'
       end
 
-      event_venue = location.name
+      event_venue = location.name 
 
       special = (hash['special'])
 
